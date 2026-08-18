@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Fetch Products</title>
+    <style>
+        table {
+            background-color: aqua;
+            color: red;
+            border: 2px solid black;
+            margin: auto;
+            padding: 20px;
+            border-collapse: collapse; 
+        }
+        th, td {
+            border: 1px solid black;
+            padding: 8px;
+            text-align: center;
+        }
+    </style>
+</head>
+<body>
+    <table>
+        <thead>
+            <tr>
+                <th>Sr.no</th>
+                <th>Title</th>
+                <th>Image</th>
+                <th>Category</th>
+                <th>Price</th>
+                <th>Rating</th>
+                <th>Cart</th>
+            </tr>
+        </thead>
+        <!-- Added id="data" to target this specific body element -->
+        <tbody id="data">
+            <!-- JavaScript will inject the rows here -->
+        </tbody>
+    </table>
+
+    <script>
+        const url = "https://dummyjson.com/products";
+        const convert = (value)=>{
+            return ((value*97.6).toFixed(2)+'₹'); 
+        }
+        const addToCart = (id)=>{
+            alert(`Product with ID ${id} added to cart!`);
+        }
+        
+        async function loadProducts() {
+            try {
+                const res = await fetch(url);
+                const data = await res.json();
+                
+                const tableBody = document.getElementById("data");
+                
+                // Build an HTML string using template literals
+                  let tableContent = data.products.map((product, index) => {
+                    return`
+                        <tr>
+                            <td>${index + 1}</td>
+                            <td>${product.title}</td>
+                            <td><img src="${product.images}" alt="${product.title}" width="100"></td>
+                            <td>${product.category}</td>
+                            <td>${convert(product.price)}</td>
+                            <td>${product.rating}</td>
+                            <td><button onclick="addToCart(${product.id})">Add to Cart</button></td>
+                        </tr>
+                    `;
+                }).join("");
+                tableBody.innerHTML = tableContent;
+                
+            } catch (err) {
+                console.error("Error fetching data:", err);
+            }
+        }
+        
+        loadProducts();
+    </script>
+</body>
+</html>
+
+```
