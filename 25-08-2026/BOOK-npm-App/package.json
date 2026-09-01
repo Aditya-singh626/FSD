@@ -1,0 +1,19 @@
+{
+  "name": "book-npm-app",
+  "version": "1.0.0",
+  "description": "my first npm app",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "parcel index.html"
+  },
+  "author": "Aditya Singh",
+  "license": "ISC",
+  "dependencies": {
+    "react": "^19.2.8",
+    "react-dom": "^19.2.8"
+  },
+  "devDependencies": {
+    "@babel/core": "^7.29.7",
+    "parcel": "^2.16.4"
+  }
+}

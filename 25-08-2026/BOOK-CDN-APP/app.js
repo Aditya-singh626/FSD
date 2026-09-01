@@ -1,4 +1,4 @@
-import Book from "../BOOK-CDN-APP/book.js";
+import {Book }from "../BOOK-CDN-APP/book.js";
 const bookdata = [
     {image:"",title:"nodeJS",price:1000},
     {image:"",title:"Vue.js",price:800},
